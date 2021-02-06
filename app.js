@@ -50,8 +50,14 @@ loginForm.addEventListener('submit', (e) => {
 const displayDataHtml = () => {
   loginForm.classList.add('invisible');
   const firstName = JSON.parse(sessionStorage.getItem('user')).user.first_name;
-  messageContainer.innerHTML = `<p class="fs-2 text-center">Hello ${firstName}</p>
-  <p class="fs-2 text-center mb-4">You May Enter The Record Exchange</p>
-  <a href="#" class="text-center btn btn-outline-primary fs-4" id="my-button">Enter</a>
+  const messageContainerHtml = `
+  <div class="border border-dark rounded-3 py-5 px-3 message">
+    <p class="fs-1 fw-light text-center">Hello ${firstName}</p>
+    <p class="fs-3 fw-light text-center mb-4">You May Enter The Best Website Ever!</p>
+    <div class="d-grid gap-2">
+      <a href="#" class="btn btn-outline-dark fs-6 fw-light">Enter</a>
+    </div>
+  </div>
   `;
+  messageContainer.innerHTML = messageContainerHtml;
 }
