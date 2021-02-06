@@ -1,20 +1,38 @@
-.hero-wrapper {
-  background-color: lightblue;
-  height: 100vh;
+html {
+  height: 100%;
 }
 
-.hero {
-  height: 100vh;
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.hero-wrapper {
+  background-color: lightblue;
 }
 
 .row {
   height: 50%;
 }
 
-.hidden {
-  display: none;
+#my-button {
+  display: block;
+  width: 75%;
+  min-width: 250px;
+  margin: 0 auto;
 }
 
-.visible {
-  display: block;
+#message-container {
+  border-radius: .75rem;
+}
+
+footer {
+  grid-row: 2/3;
+}
+
+@media screen and (min-width: 768px) {
+  #header {
+    margin-bottom: 5rem !important;
+  }
 }

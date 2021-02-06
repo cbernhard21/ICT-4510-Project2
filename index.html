@@ -7,40 +7,45 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet" href="my-styles.css">
 
-  <title>Document</title>
+  <title>Project 2 - Responsive Form</title>
 </head>
 
-<body>
+<body class="text-light">
 
-  <div class="hero-wrapper">
+  <div class="hero-wrapper ps-1 pe-1">
     <div class="hero container">
-      <header class="mb-5 pt-4 text-center">
+      <header class="mb-4 pt-4 text-center" id="header">
         <h1>The Record Exchange</h1>
       </header>
-      <div class="row align-items-center">
-        <div class="hero-text col-md text-center">
-          <h2 class="hero-title mb-3">The World's Largest</h2>
-          <h3 class="mb-3">Record Collecting Community</h3>
+      <div class="row align-items-start">
+        <div class="hero-text col-md text-center mb-4">
+          <h2 class="hero-title fs-2">The World's Largest</h2>
+          <h2 class="fs-2">Record Collecting Community</h2>
         </div>
-        <div class="hero-form col-md" id="message-container">
-          <form method="POST" class="bg-dark p-4 text-secondary rounded-3" id="login-form">
-            <p>Please Log In</p>
-            <div class="mb-3">
-              <label for="username" class="form-label">User Name</label>
-              <input type="text" id="username" class="form-control">
+        <div class="col-md justify-content-center bg-dark p-3 mb-3 text-secondary" id="message-container">
+          <form method="POST" id="login-form">
+            <p class="fs-3 mb-3">Please Log In</p>
+            <div class="mb-4">
+              <label for="username" class="form-label fs-4">User Name</label>
+              <input type="text" id="username" class="form-control" name="username" required>
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" id="password" class="form-control">
+            <div class="mb-4">
+              <label for="password" class="form-label fs-4">Password</label>
+              <input type="password" id="password" class="form-control" name="password" required>
             </div>
             <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-outline-primary">Submit</button>
+              <button type="submit" class="btn btn-outline-primary fs-4">Submit</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
+  <footer class="text-center pt-3 pb-3 bg-primary text-light">
+    <p class="mb-1">Christopher Bernhard</p>
+    <p class="mb-1">University Of Denver</p>
+    <p class="mb-1">ICT 4510 - Project 2</p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <script src="app.js"></script>
