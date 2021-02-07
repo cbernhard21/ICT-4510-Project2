@@ -15,9 +15,7 @@ const spinner = document.querySelector('#spinner');
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  // show spinner while loading 
-  spinner.classList.remove('hidden');
-  spinner.classList.add('d-flex');
+  showSpinner()
 
   // hide form to see spinner
   loginForm.classList.add('hidden');
@@ -28,7 +26,7 @@ loginForm.addEventListener('submit', (e) => {
 
   // url endpoint and object to send to the api
   const url = 'https://ict4510.herokuapp.com/api/login';
-  const formPostData = {
+  const formData = {
     method: 'POST',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
@@ -39,30 +37,18 @@ loginForm.addEventListener('submit', (e) => {
     }),
   };
 
-  // send the login in data 
-  fetch(url, formPostData)
-    .then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        return res.json();
-      } else {
-        console.log('Looks like there was a problem. Status Code ' + res.status);
-      }
-    })
-    .then((data) => {
-      sessionStorage.setItem('data', JSON.stringify(data));
-      displayDataHtml();
-    })
-    .catch(error => {
-      console.log(error, 'there was an error')
-    });
+  // send login data
+  sendFormData(url, formData)
+
+  displayDataHtml();
+
 })
 
 // function to display the success message
 const displayDataHtml = () => {
   const messageContainer = document.querySelector('#message-container');
-  // hide spinner
-  spinner.classList.remove('d-flex');
-  spinner.classList.add('hidden');
+
+  hideSpinner();
 
   // show the div with the message in it 
   messageContainer.classList.remove('hidden');
@@ -80,4 +66,31 @@ const displayDataHtml = () => {
   </div>
   `;
   messageContainer.innerHTML = messageContainerHtml;
+}
+
+function showSpinner() {
+  spinner.classList.remove('hidden');
+  spinner.classList.add('d-flex');
+}
+
+function hideSpinner() {
+  spinner.classList.remove('d-flex');
+  spinner.classList.add('hidden');
+}
+
+function sendFormData(url, formData) {
+  fetch(url, formData)
+    .then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        return res.json();
+      } else {
+        console.log('Looks like there was a problem. Status Code ' + res.status);
+      }
+    })
+    .then((data) => {
+      sessionStorage.setItem('data', JSON.stringify(data));
+    })
+    .catch(error => {
+      console.log(error, 'there was an error')
+    });
 }
