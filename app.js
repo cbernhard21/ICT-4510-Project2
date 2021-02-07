@@ -42,14 +42,14 @@ loginForm.addEventListener('submit', (e) => {
   // send the login in data 
   fetch(url, formPostData)
     .then((res) => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
+      if (res.status >= 200 && res.status < 300) {
         return res.json();
+      } else {
+        console.log('Looks like there was a problem. Status Code ' + res.status);
       }
     })
-    .then((user) => {
-      sessionStorage.setItem('user', JSON.stringify(user));
+    .then((data) => {
+      sessionStorage.setItem('data', JSON.stringify(data));
       displayDataHtml();
     })
     .catch(error => {
@@ -69,7 +69,7 @@ const displayDataHtml = () => {
   messageContainer.classList.add('d-flex');
 
   // get user object from storage and display the first name and message 
-  const firstName = JSON.parse(sessionStorage.getItem('user')).user.first_name;
+  const firstName = JSON.parse(sessionStorage.getItem('data')).user.first_name;
   const messageContainerHtml = `
   <div class="border border-dark rounded-3 py-5 px-3 message">
     <p class="fs-1 fw-light text-center">Hello ${firstName}</p>
