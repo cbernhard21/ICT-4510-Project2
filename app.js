@@ -3,22 +3,31 @@ ICT 4510
 2/14/2021
 username: cbernhard
 password: ict4510@pp
-The web page takes a username and password, if correct returns an user object and allows the user to 
-proceed.
+The web page takes a username and password, 
+if correct returns an user object and allows the user to proceed.
 */
 
 "use strict"
 
 const loginForm = document.querySelector('#login-form');
-const messageContainer = document.querySelector('#message-container');
+const spinner = document.querySelector('#spinner');
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
+  // show spinner while loading 
+  spinner.classList.remove('hidden');
+  spinner.classList.add('d-flex');
+
+  // hide form to see spinner
+  loginForm.classList.add('hidden');
+
+  // get values from form
   const username = document.querySelector('#username').value;
   const password = document.querySelector('#password').value;
-  const url = 'https://ict4510.herokuapp.com/api/login';
 
+  // url endpoint and object to send to the api
+  const url = 'https://ict4510.herokuapp.com/api/login';
   const formPostData = {
     method: 'POST',
     headers: {
@@ -30,6 +39,7 @@ loginForm.addEventListener('submit', (e) => {
     }),
   };
 
+  // send the login in data 
   fetch(url, formPostData)
     .then((res) => {
       if (!res.ok) {
@@ -47,8 +57,18 @@ loginForm.addEventListener('submit', (e) => {
     });
 })
 
+// function to display the success message
 const displayDataHtml = () => {
-  loginForm.classList.add('invisible');
+  const messageContainer = document.querySelector('#message-container');
+  // hide spinner
+  spinner.classList.remove('d-flex');
+  spinner.classList.add('hidden');
+
+  // show the div with the message in it 
+  messageContainer.classList.remove('hidden');
+  messageContainer.classList.add('d-flex');
+
+  // get user object from storage and display the first name and message 
   const firstName = JSON.parse(sessionStorage.getItem('user')).user.first_name;
   const messageContainerHtml = `
   <div class="border border-dark rounded-3 py-5 px-3 message">
