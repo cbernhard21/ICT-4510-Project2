@@ -14,6 +14,7 @@ const spinner = document.querySelector('#spinner');
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
+  sessionStorage.clear();
 
   showSpinner()
 
@@ -36,12 +37,8 @@ loginForm.addEventListener('submit', (e) => {
       password: password
     }),
   };
-
   // send login data
   sendFormData(url, formData)
-
-  displayDataHtml();
-
 })
 
 // function to display the success message
@@ -89,6 +86,7 @@ function sendFormData(url, formData) {
     })
     .then((data) => {
       sessionStorage.setItem('data', JSON.stringify(data));
+      displayDataHtml();
     })
     .catch(error => {
       console.log(error, 'there was an error')
